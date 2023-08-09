@@ -1,4 +1,6 @@
 #! /bin/sh
+
+NORMAL=$(tput sgr0)
 GREEN=$(tput setaf 2; tput bold)
 function green() {
     echo -e "$GREEN$*$NORMAL"
@@ -53,7 +55,6 @@ mount --mkdir ${INSTALL_DEVICE}1 /mnt/boot
 ################################################################################
 # System Insall
 ################################################################################
-
 green ""
 green "Select Mirror..."
 reflector -country 'Japan' --sort rate -save /etc/pacman.d/mirrorlist
@@ -61,7 +62,6 @@ reflector -country 'Japan' --sort rate -save /etc/pacman.d/mirrorlist
 green ""
 green "Base Package..."
 pacstrap -K /mnt base linux linux-firmware base-devel networkmanager intel-ucode vim
-
 
 green ""
 green "fstab..."
@@ -96,11 +96,17 @@ green "Create locale..."
 #locale-gen
 arch-chroot /mnt locale-gen
 
+#####################################
+##### LANG="C.UTF-8" になっている #####
+#####################################
 green ""
 green "Create locale.conf..."
 #echo LANG=ja_JP.UTF-8 > /etc/locale.conf
 arch-chroot /mnt echo LANG=ja_JP.UTF-8 > /etc/locale.conf
 
+################################
+##### KEYMAP=us になっている #####
+################################
 green ""
 green "Keymap Setting..."
 #echo KEYMAP=jp106 > /etc/vconsole.conf
@@ -112,6 +118,9 @@ arch-chroot /mnt echo KEYMAP=jp106 > /etc/vconsole.conf
 # Network Settings
 ################################################################################
 
+#################################
+##### hostname ファイルがない #####
+#################################
 green ""
 green "Hostname..."
 #echo $HOST_NAME > /etc/hostname
@@ -127,10 +136,6 @@ arch-chroot /mnt systemctl enable NetworkManager
 ################################################################################
 # Boot Loader
 ################################################################################
-# Install MicroCode
-#pacman -S intel-ucode
-#arch-chroot /mnt pacman -S intel-ucode --noconfirm
-
 green ""
 green "Install grub (for BIOS)..."
 #pacman -S grub
@@ -143,21 +148,13 @@ green "Create grub.cfg..."
 #grub-mkconfig -o /boot/grub/grub.cfg
 arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
 
+
+
 ################################################################################
 # Root and User Settings
 ################################################################################
-
-# デバッグ
-#arch-chroot /mnt echo $ROOT_PASSWORD
-#arch-chroot /mnt echo $USER_NAME
-#arch-chroot /mnt echo $USER_PASSWORD
-
 green ""
 green "Set Root Password..."
-#passwd << __EOF__
-#$ROOT_PASSWORD
-#$ROOT_PASSWORD
-#__EOF__
 arch-chroot /mnt passwd << __EOF__
 $ROOT_PASSWORD
 $ROOT_PASSWORD
@@ -165,15 +162,10 @@ __EOF__
 
 green ""
 green "Create User..."
-#useradd -m $USER_NAME
 arch-chroot /mnt useradd -m $USER_NAME
 
 green ""
 green "Set User Password..."
-#passwd $USER_NAME << __EOF__
-#$USER_PASSWORD
-#$USER_PASSWORD
-#__EOF__
 arch-chroot /mnt passwd $USER_NAME << __EOF__
 $USER_PASSWORD
 $USER_PASSWORD
