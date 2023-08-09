@@ -58,8 +58,8 @@ reflector -country 'Japan' --sort rate -save /etc/pacman.d/mirrorlist
 ########################################
 
 # Base Package
-#pacstrap -K /mnt base linux linux-firmware base-devel networkmanager vim
-pacstrap -K /mnt base linux networkmanager vim
+#pacstrap -K /mnt base linux linux-firmware base-devel networkmanager intel-ucode vim
+pacstrap -K /mnt base linux networkmanager intel-ucode vim
 
 # fstab
 genfstab -U /mnt >> /mnt/etc/fstab
@@ -118,7 +118,7 @@ arch-chroot /mnt systemctl enable NetworkManager
 ################################################################################
 # Install MicroCode
 #pacman -S intel-ucode
-arch-chroot /mnt pacman -S intel-ucode --noconfirm
+#arch-chroot /mnt pacman -S intel-ucode --noconfirm
 
 # Install grub (for BIOS)
 #pacman -S grub
@@ -148,9 +148,9 @@ echo "Set Root Password"
 # ここでエラーになっている（<< __EOF__ が問題か？）
 ########################################
 arch-chroot /mnt passwd << __EOF__
-arch-chroot /mnt $ROOT_PASSWORD
-arch-chroot /mnt $ROOT_PASSWORD
-arch-chroot /mnt __EOF__
+$ROOT_PASSWORD
+$ROOT_PASSWORD
+__EOF__
 
 echo "Create User"
 # Create User
@@ -164,11 +164,10 @@ echo "Set User Password"
 #$USER_PASSWORD
 #__EOF__
 
-arch-chroot /mnt echo $USER_PASSWORD
 arch-chroot /mnt passwd $USER_NAME << __EOF__
-arch-chroot /mnt $USER_PASSWORD
-arch-chroot /mnt $USER_PASSWORD
-arch-chroot /mnt __EOF__
+$USER_PASSWORD
+$USER_PASSWORD
+__EOF__
 
 # Install sudo（インストール済み。ベースシステムインストール時か？）
 #pacman -S sudo
