@@ -102,14 +102,15 @@ arch-chroot /mnt locale-gen
 
 #####################################
 ##### LANG="C.UTF-8" になっている #####
+# リダイレクト（>）の処理が一般権限で実行されているらしい
 #####################################
 green ""
 green "Create locale.conf..."
 #echo LANG=ja_JP.UTF-8 > /etc/locale.conf
 
-arch-chroot /mnt　<< __EOF__
-echo "LANG=ja_JP.UTF-8" > /etc/locale.conf
-__EOF__
+#arch-chroot /mnt　<< __EOF__
+#echo "LANG=ja_JP.UTF-8" > /etc/locale.conf
+#__EOF__
 
 #arch-chroot /mnt echo "LANG=ja_JP.UTF-8" > /etc/locale.conf
 #arch-chroot /mnt echo "LANG=ja_JP.UTF-8" | sudo tee /etc/locale.conf
