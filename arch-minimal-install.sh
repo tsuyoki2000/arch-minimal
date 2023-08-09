@@ -49,6 +49,7 @@ mkfs.ext4 ${INSTALL_DEVICE}2
 #echo Server = https://ftp.jaist.ac.jp/pub/Linux/ArchLinux/\$repo/os/\$arch > /etc/pacman.d/mirrorlist
 #$ は特殊文字なので、echo内で使用する場合は、バックスラッシュを使う
 #文頭に追加するにはどうするんだ？
+reflector -country 'Japan' --sort rate -save /etc/pacman.d/mirrorlist
 ########################################
 
 # Mount Disks
