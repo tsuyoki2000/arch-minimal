@@ -5,8 +5,9 @@ install_device = "/dev/sda"
 os.system('loadkeys jp106')
 os.system(f'fdisk {install_device}')
 
-import SendKeys
-SendKeys.SendKeys('o')
+## 以下うまく動かない
+#import SendKeys
+#SendKeys.SendKeys('o')
 
 #os.system('o')
 
