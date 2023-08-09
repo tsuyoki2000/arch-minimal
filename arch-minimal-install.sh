@@ -68,7 +68,7 @@ genfstab -U /mnt >> /mnt/etc/fstab
 #arch-chroot /mnt
 
 ########################################
-# ここで、止まる
+# ここで、止まってた（arch-chroot が原因）
 ########################################
 
 # TimeZone
@@ -144,6 +144,9 @@ echo "Set Root Password"
 #$ROOT_PASSWORD
 #__EOF__
 
+########################################
+# ここでエラーになっている（<< __EOF__ が問題か？）
+########################################
 arch-chroot /mnt passwd << __EOF__
 arch-chroot /mnt $ROOT_PASSWORD
 arch-chroot /mnt $ROOT_PASSWORD
@@ -174,6 +177,7 @@ echo "Add sudo permission for User"
 # Add sudo permission for User
 #sed -i "s/root ALL=(ALL:ALL) ALL/root ALL=(ALL:ALL) ALL\n$USER_NAME ALL=(ALL:ALL) ALL/g" /etc/sudoers
 arch-chroot /mnt sed -i "s/root ALL=(ALL:ALL) ALL/root ALL=(ALL:ALL) ALL\n$USER_NAME ALL=(ALL:ALL) ALL/g" /etc/sudoers
+
 
 
 
