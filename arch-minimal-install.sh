@@ -8,7 +8,6 @@ HOST_NAME=arch
 ROOT_PASSWORD=tsuyoki
 USER_NAME=tsuyoki
 USER_PASSWORD=tsuyoki
-loadkeys jp106
 
 ################################################################################
 # function for comment
@@ -23,6 +22,10 @@ function green() {
 ################################################################################
 # Create Partitions
 ################################################################################
+green ""
+green "Load Keymap..."
+loadkeys jp106
+
 green ""
 green "FDISK..."
 
@@ -72,6 +75,7 @@ genfstab -U /mnt >> /mnt/etc/fstab
 
 # chroot
 #arch-chroot /mnt
+arch-chroot /mnt　<< __EOF__
 
 ########################################
 # ここで、止まってた（arch-chroot が原因）
@@ -79,8 +83,9 @@ genfstab -U /mnt >> /mnt/etc/fstab
 
 green ""
 green "TimeZone..."
-#ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
-arch-chroot /mnt ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
+ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
+#arch-chroot /mnt ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
+__EOF__
 
 green ""
 green "Harcware Clock Setting..."
@@ -128,7 +133,9 @@ arch-chroot /mnt echo KEYMAP=jp106 > /etc/vconsole.conf
 green ""
 green "Hostname..."
 #echo $HOST_NAME > /etc/hostname
+#echo "$HOST_NAME" > /etc/hostname
 arch-chroot /mnt echo $HOST_NAME > /etc/hostname
+
 
 green ""
 green "Enable NetworkManager Service..."
