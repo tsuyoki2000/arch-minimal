@@ -71,7 +71,8 @@ arch-chroot /mnt
 ########################################
 
 # TimeZone
-ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
+#ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
+chroot ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 
 # Harcware Clock Setting
 hwclock --systohc
