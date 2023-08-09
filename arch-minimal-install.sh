@@ -55,9 +55,10 @@ mount --mkdir ${INSTALL_DEVICE}1 /mnt/boot
 ################################################################################
 # System Insall
 ################################################################################
-green ""
-green "Select Mirror..."
-reflector -country 'Japan' --sort rate -save /etc/pacman.d/mirrorlist
+#green ""
+#green "Select Mirror..."
+#reflector -country 'Japan' --sort rate -save /etc/pacman.d/mirrorlist
+# エラーになる（無くても問題ないので、あとまわし）
 
 green ""
 green "Base Package..."
@@ -93,6 +94,7 @@ arch-chroot /mnt sed -i "s/#ja_JP.UTF-8/ja_JP.UTF-8/g" /etc/locale.gen
 
 green ""
 green "Create locale..."
+
 #locale-gen
 arch-chroot /mnt locale-gen
 
