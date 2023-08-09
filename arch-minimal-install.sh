@@ -75,11 +75,14 @@ genfstab -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 
 # Harcware Clock Setting
-hwclock --systohc
+#hwclock --systohc
+arch-chroot /mnt hwclock --systohc
 
 # localization
-sed -i "s/#en_US.UTF-8/en_US.UTF-8/g" /etc/locale.gen
-sed -i "s/#ja_JP.UTF-8/ja_JP.UTF-8/g" /etc/locale.gen
+#sed -i "s/#en_US.UTF-8/en_US.UTF-8/g" /etc/locale.gen
+#sed -i "s/#ja_JP.UTF-8/ja_JP.UTF-8/g" /etc/locale.gen
+arch-chroot /mnt sed -i "s/#en_US.UTF-8/en_US.UTF-8/g" /etc/locale.gen
+arch-chroot /mnt sed -i "s/#ja_JP.UTF-8/ja_JP.UTF-8/g" /etc/locale.gen
 
 # Create locale
 locale-gen
