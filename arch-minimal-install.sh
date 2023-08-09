@@ -133,26 +133,35 @@ arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
 ################################################################################
 # Root and User Settings
 ################################################################################
+arch-chroot /mnt echo $ROOT_PASSWORD
+arch-chroot /mnt echo $USER_NAME
+arch-chroot /mnt echo $USER_PASSWORD
 
+echo "Set Root Password"
 # Set Root Password
 #passwd << __EOF__
 #$ROOT_PASSWORD
 #$ROOT_PASSWORD
 #__EOF__
+
 arch-chroot /mnt passwd << __EOF__
 arch-chroot /mnt $ROOT_PASSWORD
 arch-chroot /mnt $ROOT_PASSWORD
 arch-chroot /mnt __EOF__
 
+echo "Create User"
 # Create User
 #useradd -m $USER_NAME
 arch-chroot /mnt useradd -m $USER_NAME
 
+echo "Set User Password"
 # Set User Password
 #passwd $USER_NAME << __EOF__
 #$USER_PASSWORD
 #$USER_PASSWORD
 #__EOF__
+
+arch-chroot /mnt echo $USER_PASSWORD
 arch-chroot /mnt passwd $USER_NAME << __EOF__
 arch-chroot /mnt $USER_PASSWORD
 arch-chroot /mnt $USER_PASSWORD
@@ -161,6 +170,7 @@ arch-chroot /mnt __EOF__
 # Install sudo（インストール済み。ベースシステムインストール時か？）
 #pacman -S sudo
 
+echo "Add sudo permission for User"
 # Add sudo permission for User
 #sed -i "s/root ALL=(ALL:ALL) ALL/root ALL=(ALL:ALL) ALL\n$USER_NAME ALL=(ALL:ALL) ALL/g" /etc/sudoers
 arch-chroot /mnt sed -i "s/root ALL=(ALL:ALL) ALL/root ALL=(ALL:ALL) ALL\n$USER_NAME ALL=(ALL:ALL) ALL/g" /etc/sudoers
