@@ -85,14 +85,16 @@ arch-chroot /mnt sed -i "s/#en_US.UTF-8/en_US.UTF-8/g" /etc/locale.gen
 arch-chroot /mnt sed -i "s/#ja_JP.UTF-8/ja_JP.UTF-8/g" /etc/locale.gen
 
 # Create locale
-locale-gen
+#locale-gen
+arch-chroot /mnt locale-gen
 
 # Create locale.conf
-#echo LANG=en_US.UTF-8 > /etc/locale.conf
-echo LANG=ja_JP.UTF-8 > /etc/locale.conf
+#echo LANG=ja_JP.UTF-8 > /etc/locale.conf
+arch-chroot /mnt echo LANG=ja_JP.UTF-8 > /etc/locale.conf
 
 # Keymap Setting
-echo KEYMAP=jp106 > /etc/vconsole.conf
+#echo KEYMAP=jp106 > /etc/vconsole.conf
+arch-chroot /mnt echo KEYMAP=jp106 > /etc/vconsole.conf
 
 
 
@@ -101,10 +103,12 @@ echo KEYMAP=jp106 > /etc/vconsole.conf
 ################################################################################
 
 # Hostname
-echo $HOST_NAME > /etc/hostname
+#echo $HOST_NAME > /etc/hostname
+arch-chroot /mnt echo $HOST_NAME > /etc/hostname
 
 # Enable NetworkManager Service
-systemctl enable NetworkManager
+#systemctl enable NetworkManager
+arch-chroot /mnt systemctl enable NetworkManager
 
 
 
