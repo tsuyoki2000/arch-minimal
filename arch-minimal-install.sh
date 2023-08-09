@@ -58,7 +58,8 @@ reflector -country 'Japan' --sort rate -save /etc/pacman.d/mirrorlist
 ########################################
 
 # Base Package
-pacstrap -K /mnt base linux linux-firmware base-devel networkmanager vim
+#pacstrap -K /mnt base linux linux-firmware base-devel networkmanager vim
+pacstrap -K /mnt base linux networkmanager vim
 
 # fstab
 genfstab -U /mnt >> /mnt/etc/fstab
@@ -134,10 +135,15 @@ arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
 ################################################################################
 
 # Set Root Password
-passwd << __EOF__
-$ROOT_PASSWORD
-$ROOT_PASSWORD
-__EOF__
+#passwd << __EOF__
+#$ROOT_PASSWORD
+#$ROOT_PASSWORD
+#__EOF__
+
+arch-chroot /mnt passwd << __EOF__
+arch-chroot /mnt $ROOT_PASSWORD
+arch-chroot /mnt $ROOT_PASSWORD
+arch-chroot /mnt __EOF__
 
 # Create User
 useradd -m $USER_NAME
