@@ -139,32 +139,39 @@ arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
 #$ROOT_PASSWORD
 #$ROOT_PASSWORD
 #__EOF__
-
 arch-chroot /mnt passwd << __EOF__
 arch-chroot /mnt $ROOT_PASSWORD
 arch-chroot /mnt $ROOT_PASSWORD
 arch-chroot /mnt __EOF__
 
 # Create User
-useradd -m $USER_NAME
+#useradd -m $USER_NAME
+arch-chroot /mnt useradd -m $USER_NAME
 
 # Set User Password
-passwd $USER_NAME << __EOF__
-$USER_PASSWORD
-$USER_PASSWORD
-__EOF__
+#passwd $USER_NAME << __EOF__
+#$USER_PASSWORD
+#$USER_PASSWORD
+#__EOF__
+arch-chroot /mnt passwd $USER_NAME << __EOF__
+arch-chroot /mnt $USER_PASSWORD
+arch-chroot /mnt $USER_PASSWORD
+arch-chroot /mnt __EOF__
 
 # Install sudo（インストール済み。ベースシステムインストール時か？）
 #pacman -S sudo
 
 # Add sudo permission for User
-sed -i "s/root ALL=(ALL:ALL) ALL/root ALL=(ALL:ALL) ALL\n$USER_NAME ALL=(ALL:ALL) ALL/g" /etc/sudoers
+#sed -i "s/root ALL=(ALL:ALL) ALL/root ALL=(ALL:ALL) ALL\n$USER_NAME ALL=(ALL:ALL) ALL/g" /etc/sudoers
+arch-chroot /mnt sed -i "s/root ALL=(ALL:ALL) ALL/root ALL=(ALL:ALL) ALL\n$USER_NAME ALL=(ALL:ALL) ALL/g" /etc/sudoers
+
+
 
 ################################################################################
 # Shutdown
 ################################################################################
 # Exit Root
-exit
+#exit
 
 # unmount
 umount -R /mnt
