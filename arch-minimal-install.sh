@@ -116,14 +116,18 @@ arch-chroot /mnt systemctl enable NetworkManager
 # Boot Loader
 ################################################################################
 # Install MicroCode
-pacman -S intel-ucode
+#pacman -S intel-ucode
+arch-chroot /mnt pacman -S intel-ucode
 
 # Install grub (for BIOS)
-pacman -S grub
-grub-install --target=i386-pc --recheck /dev/sda
+#pacman -S grub
+#grub-install --target=i386-pc --recheck /dev/sda
+arch-chroot /mnt pacman -S grub
+arch-chroot /mnt grub-install --target=i386-pc --recheck /dev/sda
 
 # Create GRUB-Setting-File
-grub-mkconfig -o /boot/grub/grub.cfg
+#grub-mkconfig -o /boot/grub/grub.cfg
+arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
 
 ################################################################################
 # Root and User Settings
