@@ -38,32 +38,37 @@ __EOF__
 mkfs.fat -F 32 ${INSTALL_DEVICE}1
 mkfs.ext4 ${INSTALL_DEVICE}2
 
+# Mount Disks
+mount ${INSTALL_DEVICE}2 /mnt
+mount --mkdir ${INSTALL_DEVICE}1 /mnt/boot
+
 ################################################################################
-# Install System
+# System Insall
 ################################################################################
 
 ########################################
 # Select Mirror
+reflector -country 'Japan' --sort rate -save /etc/pacman.d/mirrorlist
+
 #`/etc/pacman.d/mirrorlist`
 #手動で以下を追加しても良いかも？
 #echo Server = https://ftp.jaist.ac.jp/pub/Linux/ArchLinux/\$repo/os/\$arch > /etc/pacman.d/mirrorlist
 #$ は特殊文字なので、echo内で使用する場合は、バックスラッシュを使う
 #文頭に追加するにはどうするんだ？
-reflector -country 'Japan' --sort rate -save /etc/pacman.d/mirrorlist
 ########################################
 
-# Mount Disks
-mount ${INSTALL_DEVICE}2 /mnt
-mount --mkdir ${INSTALL_DEVICE}1 /mnt/boot
-
-# Install Base Package
+# Base Package
 pacstrap -K /mnt base linux linux-firmware base-devel networkmanager vim
 
-# Create fstab
+# fstab
 genfstab -U /mnt >> /mnt/etc/fstab
 
 # chroot
 arch-chroot /mnt
+
+########################################
+# ここで、止まる
+########################################
 
 # TimeZone
 ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
