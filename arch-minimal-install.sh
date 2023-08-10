@@ -1,12 +1,29 @@
 #! /bin/sh
 
 ################################################################################
-# 質問形式にソースを改変する予定
+# Settings
 ################################################################################
-HOST_NAME=arch
-ROOT_PASSWORD=tsuyoki
-USER_NAME=tsuyoki
-USER_PASSWORD=tsuyoki
+echo "Hostname:"
+read HOST_NAME
+
+echo "Root password:"
+read ROOT_PASSWORD
+clear
+
+echo "User name:"
+read USER_NAME
+
+echo "User password:"
+read USER_PASSWORD
+clear
+
+#HOST_NAME=arch
+#ROOT_PASSWORD=tsuyoki
+#USER_NAME=tsuyoki
+#USER_PASSWORD=tsuyoki
+
+echo "Start install. If press Enter:"
+read
 
 ################################################################################
 # function for comment
