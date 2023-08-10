@@ -73,8 +73,7 @@ mount --mkdir ${INSTALL_DEVICE}1 /mnt/boot
 
 green ""
 green "Base Package..."
-pacstrap -K /mnt base linux linux-firmware base-devel networkmanager intel-ucode vim git sudo
-#pacstrap -K /mnt base linux linux-firmware base-devel networkmanager $ucode-ucode vim git sudo
+pacstrap -K /mnt base linux linux-firmware base-devel networkmanager intel-ucode vim
 
 
 green ""
@@ -116,12 +115,14 @@ green ""
 green "Create locale.conf..."
 #echo LANG=ja_JP.UTF-8 > /etc/locale.conf
 
-arch-chroot /mnt　<< _EOF_
-echo "LANG=ja_JP.UTF-8" > /etc/locale.conf
-_EOF_
+#arch-chroot /mnt　<< _EOF_
+#echo "LANG=ja_JP.UTF-8" > /etc/locale.conf
+#_EOF_（ダメだった）
 
-#arch-chroot /mnt echo "LANG=ja_JP.UTF-8" > /etc/locale.conf
-#arch-chroot /mnt echo "LANG=ja_JP.UTF-8" | sudo tee /etc/locale.conf
+#arch-chroot /mnt echo "LANG=ja_JP.UTF-8" > /etc/locale.conf（ダメだった）
+#arch-chroot /mnt echo "LANG=ja_JP.UTF-8" | sudo tee /etc/locale.conf（ダメだった）
+
+sudo sh -c "arch-chroot /mnt echo LANG=ja_JP.UTF-8 > /etc/locale.conf"
 
 
 ################################
