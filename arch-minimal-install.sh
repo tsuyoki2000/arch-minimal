@@ -148,8 +148,10 @@ __EOF__
 green ""
 green "Hostname..."
 #echo $HOST_NAME > /etc/hostname
-#echo "$HOST_NAME" > /etc/hostname
-arch-chroot /mnt echo $HOST_NAME > /etc/hostname
+#arch-chroot /mnt echo $HOST_NAME > /etc/hostname（ダメだった）
+arch-chroot /mnt << __EOF__
+echo $HOST_NAME > /etc/hostname
+__EOF__
 
 
 green ""
