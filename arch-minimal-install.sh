@@ -121,8 +121,9 @@ green "Create locale.conf..."
 
 #arch-chroot /mnt echo "LANG=ja_JP.UTF-8" > /etc/locale.conf（ダメだった）
 #arch-chroot /mnt echo "LANG=ja_JP.UTF-8" | sudo tee /etc/locale.conf（ダメだった）
-
-sudo sh -c "arch-chroot /mnt echo LANG=ja_JP.UTF-8 > /etc/locale.conf"
+#sudo sh -c "arch-chroot /mnt echo LANG=ja_JP.UTF-8 > /etc/locale.conf"（ダメだった）
+sh -c "arch-chroot /mnt echo LANG=ja_JP.UTF-8 > /etc/locale.conf"
+echo "done."
 
 
 ################################
