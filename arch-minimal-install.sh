@@ -73,7 +73,7 @@ mount --mkdir ${INSTALL_DEVICE}1 /mnt/boot
 
 green ""
 green "Base Package..."
-pacstrap -K /mnt base linux linux-firmware base-devel networkmanager intel-ucode vim
+pacstrap -K /mnt base linux linux-firmware base-devel networkmanager intel-ucode
 
 
 green ""
