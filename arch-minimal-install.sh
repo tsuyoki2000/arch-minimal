@@ -111,25 +111,20 @@ arch-chroot /mnt locale-gen
 ##### LANG="C.UTF-8" になっている #####
 # リダイレクト（>）の処理が一般権限で実行されているらしい
 #####################################
-#green ""
-#green "Create locale.conf..."
+green ""
+green "Edit locale.conf..."
 #echo LANG=ja_JP.UTF-8 > /etc/locale.conf
-
-#arch-chroot /mnt　<< _EOF_
-#echo "LANG=ja_JP.UTF-8" > /etc/locale.conf
-#_EOF_（ダメだった）
-
 #arch-chroot /mnt echo "LANG=ja_JP.UTF-8" > /etc/locale.conf（ダメだった）
 #arch-chroot /mnt echo "LANG=ja_JP.UTF-8" | sudo tee /etc/locale.conf（ダメだった）
 #sudo sh -c "arch-chroot /mnt echo LANG=ja_JP.UTF-8 > /etc/locale.conf"（ダメだった）
 #sh -c "arch-chroot /mnt echo LANG=ja_JP.UTF-8 > /etc/locale.conf"（ダメだった）
+arch-chroot /mnt << __EOF__
+echo LANG=ja_JP.UTF-8 > /etc/locale.conf
+__EOF__
 
 
-################################
-##### KEYMAP=us になっている #####
-################################
 green ""
-green "Keymap Setting..."
+green "Set Keymap..."
 #echo KEYMAP=jp106 > /etc/vconsole.conf
 #arch-chroot /mnt echo KEYMAP=jp106 > /etc/vconsole.conf（ダメだった）
 arch-chroot /mnt << __EOF__
@@ -142,11 +137,8 @@ __EOF__
 # Network Settings
 ################################################################################
 
-#################################
-##### hostname ファイルがない #####
-#################################
 green ""
-green "Hostname..."
+green "Create Hostname..."
 #echo $HOST_NAME > /etc/hostname
 #arch-chroot /mnt echo $HOST_NAME > /etc/hostname（ダメだった）
 arch-chroot /mnt << __EOF__
