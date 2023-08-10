@@ -49,7 +49,7 @@ __EOF__
 
 green ""
 green "Format Disks..."
-mkfs.fat -F 32 ${INSTALL_DEVICE}1
+mkfs.fat -F32 ${INSTALL_DEVICE}1
 mkfs.ext4 ${INSTALL_DEVICE}2
 
 green ""
@@ -75,7 +75,7 @@ timedatectl set-ntp true
 green ""
 green "Base Package..."
 #pacstrap -K /mnt base linux linux-firmware base-devel networkmanager intel-ucode vim
-pacstrap -K /mnt base linux linux-firmware base-devel networkmanager $ucode-ucode vim
+pacstrap -K /mnt base linux linux-firmware base-devel networkmanager $ucode-ucode vim git sudo
 
 
 green ""
