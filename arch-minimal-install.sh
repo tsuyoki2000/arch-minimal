@@ -60,7 +60,6 @@ mount --mkdir ${INSTALL_DEVICE}1 /mnt/boot
 ################################################################################
 # System Insall
 ################################################################################
-timedatectl set-ntp true
 
 #green ""
 #green "Select Mirror..."
