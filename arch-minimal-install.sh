@@ -11,18 +11,22 @@
 ################################################################################
 # Settings
 ################################################################################
-echo "Hostname:"
-read HOST_NAME
+#echo "Hostname:"
+#read HOST_NAME
+read -p "Hostname: " HOST_NAME
 
-echo "Root password:"
-read ROOT_PASSWORD
+#echo "Root password:"
+#read ROOT_PASSWORD
+read -p "Root password: " ROOT_PASSWORD
 clear
 
-echo "User name:"
-read USER_NAME
+#echo "User name:"
+#read USER_NAME
+read -p "User name: " USER_NAME
 
-echo "User password:"
-read USER_PASSWORD
+#echo "User password:"
+#read USER_PASSWORD
+read -p "User password: " USER_PASSWORD
 clear
 
 #HOST_NAME=arch
@@ -30,8 +34,10 @@ clear
 #USER_NAME=tsuyoki
 #USER_PASSWORD=tsuyoki
 
-echo "Start install. If press Enter:"
-read
+#echo "Start install. If press Enter:"
+#read
+read -p "Start install. If press Enter: " IS_INSTALL
+# IS_INSTALL = Enter でインストール開始するように条件分けのコードを記述
 
 ################################################################################
 # function for comment
