@@ -1,5 +1,7 @@
 # arch-minimal
 
+VirtualBox 用スクリプト
+
 ISO から起動後、
 ```
 # loadkeys jp106
