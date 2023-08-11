@@ -94,28 +94,42 @@ genfstab -U /mnt >> /mnt/etc/fstab
 #arch-chroot /mnt　<< __EOF__
 #__EOF__
 
+arch-chroot /mnt << __EOF__
+# TimeZone
+ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
+
+# Harcware Clock Setting
+hwclock --systohc
+
+# Localization
+sed -i "s/#en_US.UTF-8/en_US.UTF-8/g" /etc/locale.gen
+sed -i "s/#ja_JP.UTF-8/ja_JP.UTF-8/g" /etc/locale.gen
+
+# Create locale
+locale-gen
+__EOF__
+sleep 5
+
 green ""
 green "TimeZone..."
-#ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
-arch-chroot /mnt ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
+#arch-chroot /mnt ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 
 green ""
 green "Harcware Clock Setting..."
 #hwclock --systohc
-arch-chroot /mnt hwclock --systohc
+#arch-chroot /mnt hwclock --systohc
 
 green ""
 green "Localization..."
 #sed -i "s/#en_US.UTF-8/en_US.UTF-8/g" /etc/locale.gen
 #sed -i "s/#ja_JP.UTF-8/ja_JP.UTF-8/g" /etc/locale.gen
-arch-chroot /mnt sed -i "s/#en_US.UTF-8/en_US.UTF-8/g" /etc/locale.gen
-arch-chroot /mnt sed -i "s/#ja_JP.UTF-8/ja_JP.UTF-8/g" /etc/locale.gen
+#arch-chroot /mnt sed -i "s/#en_US.UTF-8/en_US.UTF-8/g" /etc/locale.gen
+#arch-chroot /mnt sed -i "s/#ja_JP.UTF-8/ja_JP.UTF-8/g" /etc/locale.gen
 
 green ""
 green "Create locale..."
-
 #locale-gen
-arch-chroot /mnt locale-gen
+#arch-chroot /mnt locale-gen
 
 #####################################
 ##### LANG="C.UTF-8" になっている #####
