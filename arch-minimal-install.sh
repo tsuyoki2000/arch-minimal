@@ -1,43 +1,24 @@
 #! /bin/sh
-################################################################################
+########################################
 # 未対応案件
 # - Mirrors
 # - Swap（ファイル形式）
 # - Audio
 # - Automatic time sync (NTP)
 # - multilib Repo (/etc/pacman.conf?)
-################################################################################
+########################################
 
 ################################################################################
 # Settings
 ################################################################################
-#echo "Hostname:"
-#read HOST_NAME
 read -p "Hostname: " HOST_NAME
-
-#echo "Root password:"
-#read ROOT_PASSWORD
 read -p "Root password: " ROOT_PASSWORD
 clear
 
-#echo "User name:"
-#read USER_NAME
 read -p "User name: " USER_NAME
-
-#echo "User password:"
-#read USER_PASSWORD
 read -p "User password: " USER_PASSWORD
 clear
-
-#HOST_NAME=arch
-#ROOT_PASSWORD=tsuyoki
-#USER_NAME=tsuyoki
-#USER_PASSWORD=tsuyoki
-
-#echo "Start install. If press Enter:"
-#read
-read -p "Start install. If press Enter: " IS_INSTALL
-# IS_INSTALL = Enter でインストール開始するように条件分けのコードを記述
+read -p "Start install. If press Enter: "
 
 ################################################################################
 # function for comment
@@ -91,7 +72,6 @@ mount --mkdir ${INSTALL_DEVICE}1 /mnt/boot
 ################################################################################
 # System Insall
 ################################################################################
-
 #green ""
 #green "Select Mirror..."
 #reflector -country 'Japan' --sort rate -save /etc/pacman.d/mirrorlist
@@ -105,7 +85,6 @@ mount --mkdir ${INSTALL_DEVICE}1 /mnt/boot
 green ""
 green "Base Package..."
 pacstrap -K /mnt base linux linux-firmware base-devel networkmanager intel-ucode
-
 
 green ""
 green "fstab..."
@@ -153,7 +132,6 @@ arch-chroot /mnt << __EOF__
 echo LANG=ja_JP.UTF-8 > /etc/locale.conf
 __EOF__
 
-
 green ""
 green "Set Keymap..."
 #echo KEYMAP=jp106 > /etc/vconsole.conf
@@ -163,11 +141,9 @@ echo KEYMAP=jp106 > /etc/vconsole.conf
 __EOF__
 
 
-
 ################################################################################
 # Network Settings
 ################################################################################
-
 green ""
 green "Create Hostname..."
 #echo $HOST_NAME > /etc/hostname
@@ -175,7 +151,6 @@ green "Create Hostname..."
 arch-chroot /mnt << __EOF__
 echo $HOST_NAME > /etc/hostname
 __EOF__
-
 
 green ""
 green "Enable NetworkManager Service..."
@@ -230,14 +205,14 @@ green "Add sudo permission for User..."
 #sed -i "s/root ALL=(ALL:ALL) ALL/root ALL=(ALL:ALL) ALL\n$USER_NAME ALL=(ALL:ALL) ALL/g" /etc/sudoers
 arch-chroot /mnt sed -i "s/root ALL=(ALL:ALL) ALL/root ALL=(ALL:ALL) ALL\n$USER_NAME ALL=(ALL:ALL) ALL/g" /etc/sudoers
 
+# Exit Root
+#exit
 
 
 
 ################################################################################
 # Shutdown
 ################################################################################
-# Exit Root
-#exit
 
 green ""
 green "unmount /mnt..."
@@ -245,4 +220,5 @@ umount -R /mnt
 
 green ""
 green "Install is Complete."
-green "Shutdown. type poweroff"
+green ""
+green "Type 'poweroff' or 'reboot'."
