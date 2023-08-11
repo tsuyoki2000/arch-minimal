@@ -91,7 +91,7 @@ green "fstab..."
 genfstab -U /mnt >> /mnt/etc/fstab
 
 # chroot
-#arch-chroot /mnt　<< __EOF__
+#arch-chroot /mnt << __EOF__
 #__EOF__
 
 green ""
