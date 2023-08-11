@@ -205,6 +205,9 @@ green "Add sudo permission for User..."
 #sed -i "s/root ALL=(ALL:ALL) ALL/root ALL=(ALL:ALL) ALL\n$USER_NAME ALL=(ALL:ALL) ALL/g" /etc/sudoers
 arch-chroot /mnt sed -i "s/root ALL=(ALL:ALL) ALL/root ALL=(ALL:ALL) ALL\n$USER_NAME ALL=(ALL:ALL) ALL/g" /etc/sudoers
 
+################################################################################
+# Pipewire
+################################################################################
 green ""
 green "Install Pipewire..."
 arch-chroot /mnt pacman -S pipewire-pulse wireplumber pipewire-jack gst-plugin-pipewire --noconfirm
