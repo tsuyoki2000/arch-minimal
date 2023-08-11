@@ -113,13 +113,12 @@ arch-chroot /mnt sed -i "s/#ja_JP.UTF-8/ja_JP.UTF-8/g" /etc/locale.gen
 
 green ""
 green "Create locale..."
-
 #locale-gen
 arch-chroot /mnt locale-gen
 
 #####################################
 ##### LANG="C.UTF-8" になっている #####
-# リダイレクト（>）の処理が一般権限で実行されているらしい
+# リダイレクト（>）の処理が一般権限で実行されているため、ファイル出力が出来ないらしい
 #####################################
 green ""
 green "Edit locale.conf..."
@@ -220,5 +219,4 @@ umount -R /mnt
 
 green ""
 green "Install is Complete."
-green ""
 green "Type 'poweroff' or 'reboot'."
