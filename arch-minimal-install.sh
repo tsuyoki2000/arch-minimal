@@ -84,7 +84,8 @@ mount --mkdir ${INSTALL_DEVICE}1 /mnt/boot
 
 green ""
 green "Base Package..."
-pacstrap -K /mnt base linux linux-firmware base-devel networkmanager intel-ucode
+#pacstrap -K /mnt base linux linux-firmware base-devel networkmanager intel-ucode
+pacstrap -K /mnt base linux linux-firmware base-devel networkmanager
 
 green ""
 green "fstab..."
@@ -206,7 +207,7 @@ arch-chroot /mnt sed -i "s/root ALL=(ALL:ALL) ALL/root ALL=(ALL:ALL) ALL\n$USER_
 
 green ""
 green "Install Pipewire..."
-arch-chroot /mnt pacman -S pipewire-pulse wireplumber pipewire-jack --noconfirm
+arch-chroot /mnt pacman -S pipewire-pulse wireplumber pipewire-jack gst-plugin-pipewire --noconfirm
 
 # Exit Root
 #exit
