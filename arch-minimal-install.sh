@@ -42,8 +42,6 @@ echo "done."
 
 green ""
 green "FDISK..."
-
-# FDISK
 fdisk $INSTALL_DEVICE << __EOF__
 o
 
@@ -66,7 +64,6 @@ green ""
 green "Format Disks..."
 mkfs.fat -F32 ${INSTALL_DEVICE}1
 mkfs.ext4 ${INSTALL_DEVICE}2
-echo "done."
 
 green ""
 green "Mount Disks..."
@@ -212,12 +209,18 @@ green "Add sudo permission for User..."
 arch-chroot /mnt sed -i "s/root ALL=(ALL:ALL) ALL/root ALL=(ALL:ALL) ALL\n$USER_NAME ALL=(ALL:ALL) ALL/g" /etc/sudoers
 
 ################################################################################
+# zram-generator（スワップ管理パッケージ？）
+################################################################################
+green ""
+green "Install zram-generator..."
+arch-chroot /mnt pacman -S zram-generator --noconfirm
+
+################################################################################
 # Pipewire
 # - wireplumber（pipewire-pulseの依存。pipwire もインストールされる。）
 # - pipewire-pulse（xfce4-pulseaudio-plugin の依存）
 # - pipewire-jack（Firefox, smplayer の依存）
 # - pipewire-alsa（使用アプリで ALSA を使っているものがあるのか分からんが一応インストール）
-
 ################################################################################
 green ""
 green "Install Pipewire..."
