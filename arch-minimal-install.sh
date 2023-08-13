@@ -38,6 +38,7 @@ INSTALL_DEVICE=/dev/sda
 green ""
 green "Load Keymap..."
 loadkeys jp106
+echo "done."
 
 green ""
 green "FDISK..."
@@ -59,16 +60,19 @@ p
 
 w
 __EOF__
+echo "done."
 
 green ""
 green "Format Disks..."
 mkfs.fat -F32 ${INSTALL_DEVICE}1
 mkfs.ext4 ${INSTALL_DEVICE}2
+echo "done."
 
 green ""
 green "Mount Disks..."
 mount ${INSTALL_DEVICE}2 /mnt
 mount --mkdir ${INSTALL_DEVICE}1 /mnt/boot
+echo "done."
 
 ################################################################################
 # System Insall
@@ -160,6 +164,7 @@ green ""
 green "Enable NetworkManager Service..."
 #systemctl enable NetworkManager
 arch-chroot /mnt systemctl enable NetworkManager
+echo "done."
 
 
 
@@ -201,9 +206,6 @@ $USER_PASSWORD
 $USER_PASSWORD
 __EOF__
 
-# Install sudo（インストール済み。ベースシステムインストール時か？）
-#pacman -S sudo
-
 green ""
 green "Add sudo permission for User..."
 #sed -i "s/root ALL=(ALL:ALL) ALL/root ALL=(ALL:ALL) ALL\n$USER_NAME ALL=(ALL:ALL) ALL/g" /etc/sudoers
@@ -211,10 +213,15 @@ arch-chroot /mnt sed -i "s/root ALL=(ALL:ALL) ALL/root ALL=(ALL:ALL) ALL\n$USER_
 
 ################################################################################
 # Pipewire
+# - wireplumber（pipewire-pulseの依存。pipwire もインストールされる。）
+# - pipewire-pulse（xfce4-pulseaudio-plugin の依存）
+# - pipewire-jack（Firefox, smplayer の依存）
+# - pipewire-alsa（使用アプリで ALSA を使っているものがあるのか分からんが一応インストール）
+
 ################################################################################
 green ""
 green "Install Pipewire..."
-#arch-chroot /mnt pacman -S wireplumber gst-plugin-pipewire pipewire-pulse pipewire-jack --noconfirm
+arch-chroot /mnt pacman -S wireplumber gst-plugin-pipewire pipewire-pulse pipewire-jack pipewire-alsa --noconfirm
 
 # Exit Root
 #exit
@@ -224,7 +231,6 @@ green "Install Pipewire..."
 ################################################################################
 # Shutdown
 ################################################################################
-
 green ""
 green "unmount /mnt..."
 umount -R /mnt
