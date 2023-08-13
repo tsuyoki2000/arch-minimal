@@ -195,6 +195,7 @@ __EOF__
 green ""
 green "Create User..."
 arch-chroot /mnt useradd -m $USER_NAME
+echo "done."
 
 green ""
 green "Set User Password..."
@@ -207,6 +208,7 @@ green ""
 green "Add sudo permission for User..."
 #sed -i "s/root ALL=(ALL:ALL) ALL/root ALL=(ALL:ALL) ALL\n$USER_NAME ALL=(ALL:ALL) ALL/g" /etc/sudoers
 arch-chroot /mnt sed -i "s/root ALL=(ALL:ALL) ALL/root ALL=(ALL:ALL) ALL\n$USER_NAME ALL=(ALL:ALL) ALL/g" /etc/sudoers
+echo "done."
 
 ################################################################################
 # zram-generator（スワップ管理パッケージ？）
