@@ -214,7 +214,7 @@ arch-chroot /mnt sed -i "s/root ALL=(ALL:ALL) ALL/root ALL=(ALL:ALL) ALL\n$USER_
 ################################################################################
 green ""
 green "Install Pipewire..."
-arch-chroot /mnt pacman -S wireplumber gst-plugin-pipewire pipewire-pulse pipewire-jack --noconfirm
+#arch-chroot /mnt pacman -S wireplumber gst-plugin-pipewire pipewire-pulse pipewire-jack --noconfirm
 
 # Exit Root
 #exit
