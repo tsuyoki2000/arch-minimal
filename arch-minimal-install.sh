@@ -10,6 +10,7 @@
 ################################################################################
 # Settings
 ################################################################################
+clear
 read -p "Hostname: " HOST_NAME
 read -p "Root password: " ROOT_PASSWORD
 clear
@@ -18,6 +19,7 @@ read -p "User name: " USER_NAME
 read -p "User password: " USER_PASSWORD
 clear
 read -p "Start install. If press Enter: "
+clear
 
 ################################################################################
 # function for comment
@@ -88,6 +90,7 @@ pacstrap -K /mnt base linux linux-firmware base-devel networkmanager
 green ""
 green "fstab..."
 genfstab -U /mnt >> /mnt/etc/fstab
+echo "done."
 
 # chroot
 #arch-chroot /mnt << __EOF__
@@ -97,11 +100,13 @@ green ""
 green "TimeZone..."
 #ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 arch-chroot /mnt ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
+echo "done."
 
 green ""
 green "Harcware Clock Setting..."
 #hwclock --systohc
 arch-chroot /mnt hwclock --systohc
+echo "done."
 
 green ""
 green "Localization..."
@@ -109,6 +114,7 @@ green "Localization..."
 #sed -i "s/#ja_JP.UTF-8/ja_JP.UTF-8/g" /etc/locale.gen
 arch-chroot /mnt sed -i "s/#en_US.UTF-8/en_US.UTF-8/g" /etc/locale.gen
 arch-chroot /mnt sed -i "s/#ja_JP.UTF-8/ja_JP.UTF-8/g" /etc/locale.gen
+echo "done."
 
 green ""
 green "Create locale..."
@@ -222,6 +228,7 @@ arch-chroot /mnt pacman -S wireplumber gst-plugin-pipewire pipewire-pulse pipewi
 green ""
 green "unmount /mnt..."
 umount -R /mnt
+echo "done."
 
 green ""
 green "Install is Complete."
