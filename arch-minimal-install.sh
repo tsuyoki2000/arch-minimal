@@ -82,7 +82,7 @@ green "Select Mirror..."
 
 reflector | grep .jp > /etc/pacman.d/mirrorlist
 cat /etc/pacman.d/mirrorlist
-read
+sleep 5
 
 green "Base Package..."
 pacstrap -K /mnt base linux linux-firmware base-devel networkmanager
