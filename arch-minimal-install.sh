@@ -80,7 +80,8 @@ green "Select Mirror..."
 #cp /etc/pacman.d/mirrorlist /tmp0
 #grep "\.jp" /tmp/mirrorlist > /etc/pacman.d/mirrorlist
 
-reflector --country Japan --sort rate --latest 10 --save /etc/pacman.d/mirrorlist
+reflector | grep .jp > /etc/pacman.d/mirrorlist
+cat /etc/pacman.d/mirrorlist
 read
 
 green "Base Package..."
