@@ -112,6 +112,8 @@ green "Create locale..."
 #locale-gen
 arch-chroot /mnt locale-gen
 
+
+
 #####################################
 ##### LANG="C.UTF-8" になっている #####
 # リダイレクト（>）の処理が一般権限で実行されているため、ファイル出力が出来ないらしい
@@ -130,18 +132,16 @@ green "Set Keymap..."
 #echo KEYMAP=jp106 > /etc/vconsole.conf
 #arch-chroot /mnt echo KEYMAP=jp106 > /etc/vconsole.conf（ダメだった）
 arch-chroot /mnt << __EOF__
-#echo KEYMAP=jp106 > /etc/vconsole.conf
+echo "KEYMAP=jp106" > /etc/vconsole.conf
 
 #echo "KEYMAP=jp106
 #XKBLAYOUT=jp
 #XKBMODEL=jp106
 #XKBOPTIONS=terminate:ctrl_alt_bksp" > /etc/vconsole.conf
-
-echo "KEYMAP=jp106" > /etc/vconsole.conf
-localectl set-keymap jp106
 __EOF__
 #XKB〜の３行は意味なかった（xfceインストール後、キーボードレイアウトは英語のままだった）
-sleep 5
+
+
 
 ################################################################################
 # Network Settings
@@ -219,6 +219,10 @@ arch-chroot /mnt pacman -S wireplumber gst-plugin-pipewire pipewire-pulse pipewi
 # Exit Root
 #exit
 
+green "TEST"
+arch-chroot /mnt localectl set-keymap jp106
+localectl set-keymap jp106
+sleep 5
 
 
 ################################################################################
