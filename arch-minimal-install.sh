@@ -57,7 +57,6 @@ p
 
 w
 __EOF__
-echo "done."
 
 green "Format Disks..."
 mkfs.fat -F32 ${INSTALL_DEVICE}1
