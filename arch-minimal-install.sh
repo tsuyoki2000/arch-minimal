@@ -149,7 +149,7 @@ XKBLAYOUT=jp
 XKBMODEL=jp106
 XKBOPTIONS=terminate:ctrl_alt_bksp" > /etc/vconsole.conf
 __EOF__
-
+sleep 3
 
 ################################################################################
 # Network Settings
@@ -214,6 +214,7 @@ green "Add sudo permission for User..."
 #sed -i "s/root ALL=(ALL:ALL) ALL/root ALL=(ALL:ALL) ALL\n$USER_NAME ALL=(ALL:ALL) ALL/g" /etc/sudoers
 arch-chroot /mnt sed -i "s/root ALL=(ALL:ALL) ALL/root ALL=(ALL:ALL) ALL\n$USER_NAME ALL=(ALL:ALL) ALL/g" /etc/sudoers
 echo "done."
+sleep 3
 
 ################################################################################
 # zram-generator（スワップ管理パッケージ？）
