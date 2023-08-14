@@ -149,6 +149,7 @@ XKBLAYOUT=jp
 XKBMODEL=jp106
 XKBOPTIONS=terminate:ctrl_alt_bksp" > /etc/vconsole.conf
 __EOF__
+#XKB〜の３行は意味なかった（xfceインストール後、キーボードレイアウトは英語のままだった）
 sleep 3
 
 ################################################################################
