@@ -27,8 +27,8 @@ clear
 NORMAL=$(tput sgr0)
 GREEN=$(tput setaf 2; tput bold)
 function green() {
-    echo -e "
-    $GREEN$*$NORMAL"
+    echo ""
+    echo -e "$GREEN$*$NORMAL"
 }
 
 ################################################################################
