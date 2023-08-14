@@ -70,8 +70,8 @@ echo "done."
 ################################################################################
 # System Insall
 ################################################################################
-#green ""
-#green "Select Mirror..."
+green ""
+green "Select Mirror..."
 #reflector -country 'Japan' --sort rate -save /etc/pacman.d/mirrorlist
 # エラーになる（無くても問題ないので、あとまわし）
 
@@ -79,6 +79,9 @@ echo "done."
 # Select a mirror
 #cp /etc/pacman.d/mirrorlist /tmp0
 #grep "\.jp" /tmp/mirrorlist > /etc/pacman.d/mirrorlist
+
+reflector --country Japan --sort rate --latest 10 --save /etc/pacman.d/mirrorlist
+read
 
 green "Base Package..."
 pacstrap -K /mnt base linux linux-firmware base-devel networkmanager
