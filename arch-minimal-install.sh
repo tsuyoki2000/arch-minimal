@@ -145,14 +145,14 @@ green "Set Keymap..."
 arch-chroot /mnt << __EOF__
 #echo KEYMAP=jp106 > /etc/vconsole.conf
 
-#echo "KEYMAP=jp106
-#XKBLAYOUT=jp
-#XKBMODEL=jp106
-#XKBOPTIONS=terminate:ctrl_alt_bksp" > /etc/vconsole.conf
+echo "KEYMAP=jp106
+XKBLAYOUT=jp
+XKBMODEL=jp106
+XKBOPTIONS=terminate:ctrl_alt_bksp" > /etc/vconsole.conf
 __EOF__
 #XKB〜の３行は意味なかった（xfceインストール後、キーボードレイアウトは英語のままだった）
 
-arch-chroot /mnt localectl set-keymap jp106
+#arch-chroot /mnt localectl set-keymap jp106
 sleep 3
 
 ################################################################################
