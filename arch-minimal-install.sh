@@ -1,7 +1,6 @@
 #! /bin/sh
 ########################################
 # 未対応案件
-# - Mirrors
 # - Swap（ファイル形式）
 # - Automatic time sync (NTP)
 # - multilib Repo (/etc/pacman.conf?)
@@ -68,22 +67,24 @@ mount --mkdir ${INSTALL_DEVICE}1 /mnt/boot
 echo "done."
 
 ################################################################################
-# System Insall
+# MirrorList
 ################################################################################
+# ミラーリストの更新は必須ではない。パッケージのダウンロードが遅いだけ。
 green ""
 green "Select Mirror..."
-#reflector -country 'Japan' --sort rate -save /etc/pacman.d/mirrorlist
-# エラーになる（無くても問題ないので、あとまわし）
-
-# ↓拾ってきた
-# Select a mirror
-#cp /etc/pacman.d/mirrorlist /tmp0
-#grep "\.jp" /tmp/mirrorlist > /etc/pacman.d/mirrorlist
-
-reflector | grep .jp > /etc/pacman.d/mirrorlist
+# -c は country. JP は日本
+reflector -c JP
+read -p "Did you see the Japan MirrorList? (y/n): " IS_MIRROR_LIST
+if [$IS_MIRROR_LIST = "y"]; then
+  reflector -c JP > /etc/pacman.d/mirrorlist
+fi
+# 結果表示
 cat /etc/pacman.d/mirrorlist
-sleep 5
+read -p "Press EnterKey: "
 
+################################################################################
+# System Insall
+################################################################################
 green "Base Package..."
 pacstrap -K /mnt base linux linux-firmware base-devel networkmanager
 
@@ -115,6 +116,7 @@ echo "done."
 green "Create locale..."
 #locale-gen
 arch-chroot /mnt locale-gen
+
 
 
 
