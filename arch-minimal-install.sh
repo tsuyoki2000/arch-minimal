@@ -24,17 +24,12 @@ green ""
 green "Select Mirror..."
 # -c は country. JP は日本
 reflector -c JP
+# 日本のミラーリストが表示されたかの確認
 read -p "Did you see the Japan MirrorList? (y/n): " IS_MIRROR_LIST
-YES="y"
-if [ $IS_MIRROR_LIST = $YES ]; then
+if [ $IS_MIRROR_LIST = "y" ]; then
   reflector -c JP > /etc/pacman.d/mirrorlist
 fi
-# 結果表示
-cat /etc/pacman.d/mirrorlist
-read -p "Press EnterKey: "
-
-#reflector -c JP > /etc/pacman.d/mirrorlist
-
+clear
 
 ################################################################################
 # Settings
