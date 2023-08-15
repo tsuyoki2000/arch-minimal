@@ -3,7 +3,7 @@
 ## ISO ダウンロード
 https://www.archlinux.jp/download/
 
-archlinux-日付-x86_64.iso
+[archlinux-日付-x86_64.iso] をダウンロードする
 
 ## スクリプトの説明
 VirtualBox 用スクリプト
