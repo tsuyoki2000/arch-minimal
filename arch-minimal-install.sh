@@ -25,9 +25,9 @@ green "Select Mirror..."
 # -c は country. JP は日本
 reflector -c JP
 
-YES="y"
+echo "AAA"
 read -p "Did you see the Japan MirrorList? (y/n): " IS_MIRROR_LIST
-echo $IS_MIRROR_LIST
+YES="y"
 if [$IS_MIRROR_LIST = $YES]; then
   reflector -c JP > /etc/pacman.d/mirrorlist
 fi
