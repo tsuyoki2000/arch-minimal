@@ -19,5 +19,5 @@ ISO から起動後、
 
 ログイン後
 ```
-$ localectl set-keymap jp106
+$ sudo localectl set-keymap jp106
 ```
