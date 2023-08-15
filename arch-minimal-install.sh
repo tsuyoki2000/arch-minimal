@@ -7,6 +7,32 @@
 ########################################
 
 ################################################################################
+# function for comment
+################################################################################
+NORMAL=$(tput sgr0)
+GREEN=$(tput setaf 2; tput bold)
+function green() {
+    echo ""
+    echo -e "$GREEN$*$NORMAL"
+}
+
+################################################################################
+# MirrorList
+################################################################################
+# ミラーリストの更新は必須ではない。パッケージのダウンロードが遅いだけ。
+green ""
+green "Select Mirror..."
+# -c は country. JP は日本
+reflector -c JP
+read -p "Did you see the Japan MirrorList? (y/n): " IS_MIRROR_LIST
+if [$IS_MIRROR_LIST = y]; then
+  reflector -c JP > /etc/pacman.d/mirrorlist
+fi
+# 結果表示
+cat /etc/pacman.d/mirrorlist
+read -p "Press EnterKey: "
+
+################################################################################
 # Settings
 ################################################################################
 clear
@@ -19,16 +45,6 @@ read -p "User password: " USER_PASSWORD
 clear
 read -p "Start install. If press Enter: "
 clear
-
-################################################################################
-# function for comment
-################################################################################
-NORMAL=$(tput sgr0)
-GREEN=$(tput setaf 2; tput bold)
-function green() {
-    echo ""
-    echo -e "$GREEN$*$NORMAL"
-}
 
 ################################################################################
 # Create Partitions
@@ -65,22 +81,6 @@ green "Mount Disks..."
 mount ${INSTALL_DEVICE}2 /mnt
 mount --mkdir ${INSTALL_DEVICE}1 /mnt/boot
 echo "done."
-
-################################################################################
-# MirrorList
-################################################################################
-# ミラーリストの更新は必須ではない。パッケージのダウンロードが遅いだけ。
-green ""
-green "Select Mirror..."
-# -c は country. JP は日本
-reflector -c JP
-read -p "Did you see the Japan MirrorList? (y/n): " IS_MIRROR_LIST
-if [$IS_MIRROR_LIST = "y"]; then
-  reflector -c JP > /etc/pacman.d/mirrorlist
-fi
-# 結果表示
-cat /etc/pacman.d/mirrorlist
-read -p "Press EnterKey: "
 
 ################################################################################
 # System Insall
