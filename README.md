@@ -1,5 +1,9 @@
 # arch-minimal
 
+## ISO ダウンロード
+https://www.archlinux.jp/download/
+
+## スクリプトの説明
 VirtualBox 用スクリプト
 
 ISO から起動後、
