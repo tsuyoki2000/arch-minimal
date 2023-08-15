@@ -14,3 +14,10 @@ ISO から起動後、
 # curl -O https://raw.githubusercontent.com/tsuyoki2000/arch-minimal/main/arch-minimal-install.sh
 # bash arch-minimal-install.sh
 ```
+1. インストールが終わったら、シャットダウン。
+2. ISO を除去し、起動。
+
+ログイン後
+```
+$ localectl set-keymap jp106
+```
