@@ -86,7 +86,7 @@ echo "done."
 ################################################################################
 green "Time Sync..."
 timedatectl set-ntp true
-read -p "Did time sync?"
+echo "done."
 
 green "Base Package..."
 pacstrap -K /mnt base linux linux-firmware base-devel networkmanager
