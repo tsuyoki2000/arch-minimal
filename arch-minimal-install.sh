@@ -84,6 +84,10 @@ echo "done."
 ################################################################################
 # System Insall
 ################################################################################
+green "Time Sync..."
+timedatectl set-ntp true
+read -p "Did time sync?"
+
 green "Base Package..."
 pacstrap -K /mnt base linux linux-firmware base-devel networkmanager
 
