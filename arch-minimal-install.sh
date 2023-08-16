@@ -82,11 +82,17 @@ mount --mkdir ${INSTALL_DEVICE}1 /mnt/boot
 echo "done."
 
 ################################################################################
-# System Insall
+# 時間調整
 ################################################################################
 green "Time Sync..."
 timedatectl set-ntp true
-echo "done."
+timedatectl status
+read -p "Did time sync?"
+#echo "done."
+
+################################################################################
+# System Insall
+################################################################################
 
 green "Base Package..."
 pacstrap -K /mnt base linux linux-firmware base-devel networkmanager
