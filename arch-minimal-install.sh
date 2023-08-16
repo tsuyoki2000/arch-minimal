@@ -82,13 +82,11 @@ mount --mkdir ${INSTALL_DEVICE}1 /mnt/boot
 echo "done."
 
 ################################################################################
-# 時間調整
+# Time Sync
 ################################################################################
 green "Time Sync..."
 timedatectl set-ntp true
-timedatectl status
-read -p "Did time sync?"
-#echo "done."
+echo "done."
 
 ################################################################################
 # System Insall
