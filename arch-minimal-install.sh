@@ -23,12 +23,12 @@ function green() {
 ################################################################################
 # ミラーリストの更新は必須ではない。パッケージのダウンロードが遅いだけ。
 green "Select Mirror..."
-# -c は country. JP は日本
-reflector -c JP
+# -c は country。jp は日本。-p は protocol。
+reflector -c jp -p https
 # 日本のミラーリストが表示されたかの確認
 read -p "Did you see the Japan MirrorList? (y/n): " IS_MIRROR_LIST
 if [ $IS_MIRROR_LIST = "y" ]; then
-  reflector -c JP > /etc/pacman.d/mirrorlist
+  reflector -c jp -p https --save /etc/pacman.d/mirrorlist
 fi
 clear
 
