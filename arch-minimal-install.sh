@@ -154,7 +154,9 @@ arch-chroot /mnt locale-gen
 # コマンドが実行できない理由は、この段階で systemd サービスが起動してないため（localectl は systemd のコマンド）。
 #####################################
 green "Set Keymap..."
-arch-chroot /mnt echo KEYMAP=jp106 > /etc/vconsole.conf
+arch-chroot /mnt << __EOF__
+echo KEYMAP=jp106 > /etc/vconsole.conf
+__EOF__
 
 #arch-chroot /mnt << __EOF__
 #echo "KEYMAP=jp106
