@@ -75,8 +75,9 @@ echo "done."
 # ミラーリストの更新は必須ではない。パッケージのダウンロードが遅いだけ。
 # -c は country。jp は日本。-p は protocol。
 ################################################################################
-green "Select Mirror..."
+green "Select Japan Mirror..."
 reflector -c jp -p https --save /etc/pacman.d/mirrorlist
+echo "done."
 
 #reflector -c jp -p https
 ## 日本のミラーリストが表示されたかの確認
