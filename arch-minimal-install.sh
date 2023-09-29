@@ -128,15 +128,18 @@ arch-chroot /mnt locale-gen
 
 
 #####################################
+# 言語の設定
 # デフォルトでは、LANG="C.UTF-8" になっている
-# リダイレクト（>）の処理が一般権限で実行されているため、ファイル出力が出来ないらしい
+# TTY は日本語表示ができないので、ここでは設定しない（Xシステムインストール時に設定すべきだと思う）
 #####################################
-green "Edit locale.conf..."
-arch-chroot /mnt << __EOF__
-echo LANG=ja_JP.UTF-8 > /etc/locale.conf
-__EOF__
+#green "Edit locale.conf..."
+#arch-chroot /mnt << __EOF__
+#echo LANG=ja_JP.UTF-8 > /etc/locale.conf
+#__EOF__
 
 #arch-chroot /mnt echo "LANG=ja_JP.UTF-8" > /etc/locale.conf（ダメだった）
+# リダイレクト（>）の処理が一般権限で実行されているため、ファイル出力が出来ないらしい
+
 #arch-chroot /mnt echo "LANG=ja_JP.UTF-8" | sudo tee /etc/locale.conf（ダメだった）
 #sudo sh -c "arch-chroot /mnt echo LANG=ja_JP.UTF-8 > /etc/locale.conf"（ダメだった）
 #sh -c "arch-chroot /mnt echo LANG=ja_JP.UTF-8 > /etc/locale.conf"（ダメだった）
@@ -145,13 +148,13 @@ __EOF__
 
 #####################################
 # Keymap 設定
-# ここで設定しても良いのだが、再起動後、以下のコマンドを実行した方が確実なので、ここでは設定しない
+# インストール時に以下のコマンドが実行できないので、簡易的に日本語キーボードを設定
 # sudo localectl set-keymap jp106
+# 再起動後、手動でコマンドを実行する事（Xシステムをインストールする前に実行しておく事）
+# コマンドが実行できない理由は、この段階で systemd サービスが起動してないため（localectl は systemd のコマンド）。
 #####################################
-#green "Set Keymap..."
-#echo KEYMAP=jp106 > /etc/vconsole.conf
-
-#arch-chroot /mnt echo KEYMAP=jp106 > /etc/vconsole.conf
+green "Set Keymap..."
+arch-chroot /mnt echo KEYMAP=jp106 > /etc/vconsole.conf
 
 #arch-chroot /mnt << __EOF__
 #echo "KEYMAP=jp106
