@@ -143,16 +143,15 @@ __EOF__
 
 green "Set Keymap..."
 #echo KEYMAP=jp106 > /etc/vconsole.conf
-#arch-chroot /mnt echo KEYMAP=jp106 > /etc/vconsole.conf（ダメだった）
-arch-chroot /mnt << __EOF__
-echo "KEYMAP=jp106" > /etc/vconsole.conf
+arch-chroot /mnt echo KEYMAP=jp106 > /etc/vconsole.conf
 
+#arch-chroot /mnt << __EOF__
 #echo "KEYMAP=jp106
 #XKBLAYOUT=jp
 #XKBMODEL=jp106
 #XKBOPTIONS=terminate:ctrl_alt_bksp" > /etc/vconsole.conf
-__EOF__
 #XKB〜の３行は意味なかった（xfceインストール後、キーボードレイアウトは英語のままだった）
+#__EOF__
 
 
 
@@ -224,7 +223,7 @@ arch-chroot /mnt pacman -S zram-generator --noconfirm
 # - wireplumber（pipewire-pulseの依存。pipwire もインストールされる。）
 # - pipewire-pulse（xfce4-pulseaudio-plugin の依存）
 # - pipewire-jack（Firefox, smplayer の依存）
-# - pipewire-alsa（使用アプリで ALSA を使っているものがあるのか分からんが一応インストール）
+# - pipewire-alsa（普段使用のアプリで ALSA を使っているものがあるのか分からんが一応インストール）
 ################################################################################
 green "Install Pipewire..."
 arch-chroot /mnt pacman -S wireplumber gst-plugin-pipewire pipewire-pulse pipewire-jack pipewire-alsa --noconfirm
@@ -232,10 +231,10 @@ arch-chroot /mnt pacman -S wireplumber gst-plugin-pipewire pipewire-pulse pipewi
 # Exit Root
 #exit
 
-green "localectl Test..."
-arch-chroot /mnt localectl set-keymap jp106
-localectl set-keymap jp106
-
+#green "localectl Test..."
+#arch-chroot /mnt localectl set-keymap jp106
+#localectl set-keymap jp106
+# 再起動後じゃないと、対応できないみたい（スクリプトに組み込むのが無理っぽい？）
 
 ################################################################################
 # Shutdown
