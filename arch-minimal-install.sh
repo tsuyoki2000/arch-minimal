@@ -37,9 +37,9 @@ clear
 ################################################################################
 INSTALL_DEVICE=/dev/sda
 
-green "Load Keymap..."
-loadkeys jp106
-echo "done."
+#green "Load Keymap..."
+#loadkeys jp106
+#echo "done."
 
 green "FDISK..."
 fdisk $INSTALL_DEVICE << __EOF__
@@ -130,14 +130,11 @@ arch-chroot /mnt locale-gen
 #####################################
 # デフォルトでは、LANG="C.UTF-8" になっている
 # リダイレクト（>）の処理が一般権限で実行されているため、ファイル出力が出来ないらしい
-# 日本語表示の設定はできるが、tty環境で日本語表示が出来ないので、ここでは設定しない。X環境を入れてから行うと良い）
 #####################################
-#green "Edit locale.conf..."
-#echo LANG=ja_JP.UTF-8 > /etc/locale.conf
-
-#arch-chroot /mnt << __EOF__
-#echo LANG=ja_JP.UTF-8 > /etc/locale.conf
-#__EOF__
+green "Edit locale.conf..."
+arch-chroot /mnt << __EOF__
+echo LANG=ja_JP.UTF-8 > /etc/locale.conf
+__EOF__
 
 #arch-chroot /mnt echo "LANG=ja_JP.UTF-8" > /etc/locale.conf（ダメだった）
 #arch-chroot /mnt echo "LANG=ja_JP.UTF-8" | sudo tee /etc/locale.conf（ダメだった）
