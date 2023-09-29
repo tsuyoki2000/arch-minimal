@@ -242,7 +242,7 @@ arch-chroot /mnt pacman -S wireplumber gst-plugin-pipewire pipewire-pulse pipewi
 #exit
 
 green "localectl Test..."
-arch-chroot /mnt localectl set-keymap jp106
+arch-chroot /mnt localectl set-keymap jp106 --noconfirm
 #localectl set-keymap jp106
 # 再起動後じゃないと、対応できないみたい（スクリプトに組み込むのが無理っぽい？）
 
