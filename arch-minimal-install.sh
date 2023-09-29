@@ -118,6 +118,7 @@ echo "done."
 
 green "Localization..."
 arch-chroot /mnt sed -i "s/#en_US.UTF-8/en_US.UTF-8/g" /etc/locale.gen
+# locale で日本語が選べるように設定しておく
 arch-chroot /mnt sed -i "s/#ja_JP.UTF-8/ja_JP.UTF-8/g" /etc/locale.gen
 echo "done."
 
@@ -127,10 +128,11 @@ arch-chroot /mnt locale-gen
 
 
 #####################################
-##### LANG="C.UTF-8" になっている #####
+# デフォルトでは、LANG="C.UTF-8" になっている
 # リダイレクト（>）の処理が一般権限で実行されているため、ファイル出力が出来ないらしい
+# 日本語表示の設定はできるが、tty環境で日本語表示が出来ないので、ここでは設定しない。X環境を入れてから行うと良い）
 #####################################
-green "Edit locale.conf..."
+#green "Edit locale.conf..."
 #echo LANG=ja_JP.UTF-8 > /etc/locale.conf
 
 #arch-chroot /mnt << __EOF__
@@ -144,8 +146,12 @@ green "Edit locale.conf..."
 
 
 
-
-green "Set Keymap..."
+#####################################
+# Keymap 設定
+# ここで設定しても良いのだが、再起動後、以下のコマンドを実行した方が確実なので、ここでは設定しない
+# sudo localectl set-keymap jp106
+#####################################
+#green "Set Keymap..."
 #echo KEYMAP=jp106 > /etc/vconsole.conf
 
 #arch-chroot /mnt echo KEYMAP=jp106 > /etc/vconsole.conf
