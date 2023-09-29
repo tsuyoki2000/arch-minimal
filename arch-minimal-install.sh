@@ -239,12 +239,14 @@ arch-chroot /mnt pacman -S wireplumber gst-plugin-pipewire pipewire-pulse pipewi
 #exit
 
 green "localectl Test..."
-arch-chroot /mnt << __EOF__
-localectl set-keymap jp106
-localectl
-__EOF__
-#arch-chroot /mnt localectl set-keymap jp106
+arch-chroot /mnt localectl set-keymap jp106
+
+#arch-chroot /mnt << __EOF__
 #localectl set-keymap jp106
+#__EOF__
+
+#localectl set-keymap jp106
+# systemd サービスが起動してないため、実行できない。
 # 再起動後、手動でやらないとダメっぽい（スクリプトに組み込むのが無理っぽい？）
 
 
