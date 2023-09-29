@@ -20,22 +20,6 @@ function green() {
 
 
 ################################################################################
-# MirrorList
-# ミラーリストの更新は必須ではない。パッケージのダウンロードが遅いだけ。
-# -c は country。jp は日本。-p は protocol。
-################################################################################
-green "Select Mirror..."
-reflector -c jp -p https --save /etc/pacman.d/mirrorlist
-
-#reflector -c jp -p https
-## 日本のミラーリストが表示されたかの確認
-#read -p "Did you see the Japan MirrorList? (y/n): " IS_MIRROR_LIST
-#if [ $IS_MIRROR_LIST = "y" ]; then
-#  reflector -c jp -p https --save /etc/pacman.d/mirrorlist
-#fi
-#clear
-
-################################################################################
 # Settings
 ################################################################################
 read -p "Hostname: " HOST_NAME
@@ -83,6 +67,24 @@ green "Mount Disks..."
 mount ${INSTALL_DEVICE}2 /mnt
 mount --mkdir ${INSTALL_DEVICE}1 /mnt/boot
 echo "done."
+
+
+
+################################################################################
+# MirrorList
+# ミラーリストの更新は必須ではない。パッケージのダウンロードが遅いだけ。
+# -c は country。jp は日本。-p は protocol。
+################################################################################
+green "Select Mirror..."
+reflector -c jp -p https --save /etc/pacman.d/mirrorlist
+
+#reflector -c jp -p https
+## 日本のミラーリストが表示されたかの確認
+#read -p "Did you see the Japan MirrorList? (y/n): " IS_MIRROR_LIST
+#if [ $IS_MIRROR_LIST = "y" ]; then
+#  reflector -c jp -p https --save /etc/pacman.d/mirrorlist
+#fi
+#clear
 
 ################################################################################
 # Time Sync
