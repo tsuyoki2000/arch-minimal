@@ -206,7 +206,7 @@ $ROOT_PASSWORD
 __EOF__
 
 green "Create User..."
-arch-chroot /mnt useradd -m $USER_NAME
+arch-chroot /mnt useradd -m -G wheel $USER_NAME
 echo "done."
 
 green "Set User Password..."
@@ -215,10 +215,10 @@ $USER_PASSWORD
 $USER_PASSWORD
 __EOF__
 
-green "Add sudo permission for User..."
-#sed -i "s/root ALL=(ALL:ALL) ALL/root ALL=(ALL:ALL) ALL\n$USER_NAME ALL=(ALL:ALL) ALL/g" /etc/sudoers
-arch-chroot /mnt sed -i "s/root ALL=(ALL:ALL) ALL/root ALL=(ALL:ALL) ALL\n$USER_NAME ALL=(ALL:ALL) ALL/g" /etc/sudoers
-echo "done."
+#green "Add sudo permission for User..."
+##sed -i "s/root ALL=(ALL:ALL) ALL/root ALL=(ALL:ALL) ALL\n$USER_NAME ALL=(ALL:ALL) ALL/g" /etc/sudoers
+#arch-chroot /mnt sed -i "s/root ALL=(ALL:ALL) ALL/root ALL=(ALL:ALL) ALL\n$USER_NAME ALL=(ALL:ALL) ALL/g" /etc/sudoers
+#echo "done."
 sleep 3
 
 
