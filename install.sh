@@ -241,6 +241,13 @@ arch-chroot /mnt pacman -S zram-generator --noconfirm
 green "Install Pipewire..."
 arch-chroot /mnt pacman -S wireplumber gst-plugin-pipewire pipewire-pulse pipewire-jack pipewire-alsa --noconfirm
 
+################################################################################
+# git
+################################################################################
+green "Install git..."
+arch-chroot /mnt pacman -S git --noconfirm
+
+
 # Exit Root
 #exit
 
