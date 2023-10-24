@@ -218,7 +218,7 @@ __EOF__
 green "Add sudo permission for User..."
 #arch-chroot /mnt sed -i "s/root ALL=(ALL:ALL) ALL/root ALL=(ALL:ALL) ALL\n$USER_NAME ALL=(ALL:ALL) ALL/g" /etc/sudoers
 arch-chroot /mnt << __EOF__
-echo $USER_NAME ALL=(ALL) ALL > /etc/sudoers.d/00_$USER_NAME
+echo "$USER_NAME ALL=(ALL) ALL" > /etc/sudoers.d/00_$USER_NAME
 __EOF__
 echo "done."
 read
