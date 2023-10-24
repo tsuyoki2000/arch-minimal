@@ -221,7 +221,6 @@ arch-chroot /mnt << __EOF__
 echo "$USER_NAME ALL=(ALL) ALL" > /etc/sudoers.d/00_$USER_NAME
 __EOF__
 echo "done."
-read
 
 
 
