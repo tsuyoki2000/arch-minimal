@@ -32,14 +32,14 @@ clear
 read -p "Start install. If press Enter: "
 clear
 
+#green "Load Keymap..."
+#loadkeys jp106
+#echo "done."
+
 ################################################################################
 # Create Partitions
 ################################################################################
 INSTALL_DEVICE=/dev/sda
-
-#green "Load Keymap..."
-#loadkeys jp106
-#echo "done."
 
 green "FDISK..."
 fdisk $INSTALL_DEVICE << __EOF__
