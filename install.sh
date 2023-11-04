@@ -60,7 +60,7 @@ w
 __EOF__
 
 green "Format Disks..."
-mkfs.fat -F32 ${INSTALL_DEVICE}1
+mkfs.vfat -F32 ${INSTALL_DEVICE}1
 mkfs.ext4 ${INSTALL_DEVICE}2
 
 green "Mount Disks..."
