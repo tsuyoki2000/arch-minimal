@@ -29,7 +29,7 @@ clear
 read -p "User name: " USER_NAME
 read -p "User password: " USER_PASSWORD
 clear
-read -p "Start install. If press Enter: "
+read -p "Press Enter to continue."
 clear
 
 #green "Load Keymap..."
